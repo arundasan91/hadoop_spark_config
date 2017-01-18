@@ -4,11 +4,14 @@
 
 Points to note:    
 1. `xml` files are placed in `master` folder.    
-2. Change `localhost` in `xml` files to respective node's (master of slave) hostname.    
-3. Only for `core-site.xml` file, change `localhost` to name of the master node.
+2. Change `localhost` in `xml` files to respective master node's hostname.    
 
 Easily change `localhost` to respective hostname using `sed` command.    
-For example:    
+For example in master node:    
 ```
 sed -i "s|localhost|$HOSTNAME|g" mapred-site.xml
+```
+In slave nodes, 
+```
+sed -i "s|localhost|__hostname_of_master_node__|g" mapred-site.xml
 ```
